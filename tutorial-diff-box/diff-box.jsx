@@ -88,6 +88,6 @@ Template.DiffBox.helpers({
   },
   gitHubLink() {
     const self = Template.instance();
-    return `https://github.com/${self.tutorialMetadata.gitHubRepoName}/commit/${self.patch.commit}`;
+    return `https://github.com/${self.tutorialMetadata.gitHubRepoName}/commit/${self.patch.sha}`;
   }
 });
