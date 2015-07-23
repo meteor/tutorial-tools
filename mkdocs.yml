@@ -1,0 +1,5 @@
+site_name: Meteor tutorial tools
+theme: readthedocs
+pages:
+- Overview: index.md
+- 'mdg:tutorial-step-diff-compiler': tutorial-step-diff-compiler.md
