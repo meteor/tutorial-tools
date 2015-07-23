@@ -1,6 +1,6 @@
 <h1>Git patch compiler for generating code snippets</h1>
 
-To generate code snippet metadate from a Git repository, use the `mdg:tutorial-step-diff-compiler` package.
+To generate code snippet metadata from a Git repository, use the `mdg:tutorial-step-diff-compiler` package.
 
 ```sh
 meteor add mdg:tutorial-step-diff-compiler
