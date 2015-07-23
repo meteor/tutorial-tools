@@ -1,10 +1,12 @@
 <h1>Git patch compiler for generating code snippets</h1>
 
+To generate code snippet metadate from a Git repository, use the `mdg:tutorial-step-diff-compiler` package.
+
 ```sh
 meteor add mdg:tutorial-step-diff-compiler
 ```
 
-A Meteor build plugin that compiles concatenated git patch files so that it can be used to display code snippets in a tutorial.
+This Meteor build plugin compiles git patch files so that they can be used to display code snippets in a tutorial.
 
 ### Usage
 
