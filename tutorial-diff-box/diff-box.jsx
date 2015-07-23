@@ -50,9 +50,6 @@ Template.DiffBox.onCreated(function () {
 });
 
 Template.DiffBox.helpers({
-  fileData() {
-    return Template.instance().fileData;
-  },
   step() {
     return Template.currentData().step;
   },
@@ -91,6 +88,6 @@ Template.DiffBox.helpers({
   },
   gitHubLink() {
     const self = Template.instance();
-    return `https://github.com/${self.tutorialMetadata.gitHubRepoName}/commit/${self.commit}`;
+    return `https://github.com/${self.tutorialMetadata.gitHubRepoName}/commit/${self.patch.commit}`;
   }
 });
