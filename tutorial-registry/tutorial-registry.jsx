@@ -1,26 +1,21 @@
 TutorialRegistry = {
-  _tutorials: {},
+  tutorials: {},
 
   registerTutorial(slug, metadata) {
     check(slug, String);
-    check(metadata, {
+    check(metadata, Match.ObjectIncluding({
       title: String,
       subtitle: String,
       tutorialSourceLink: Match.Optional(String),
-      tutorialCodeRepositoryLink: Match.Optional(String),
       steps: [
-        {
+        Match.ObjectIncluding({
           title: String,
           slug: String,
           template: String
-        }
+        })
       ]
-    });
+    }));
 
-    TutorialRegistry._tutorials[name] = metadata;
-  },
-
-  getTutorial(slug) {
-    return TutorialRegistry._tutorials[slug];
+    TutorialRegistry.tutorials[name] = metadata;
   }
 };
