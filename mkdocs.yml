@@ -2,6 +2,7 @@ site_name: Meteor tutorial tools
 theme: readthedocs
 pages:
 - Overview: index.md
+- Workflow for making a new tutorial: new-tutorial.md
 - Importing a git repo: tutorial-step-diff-compiler.md
 - Displaying code diffs: tutorial-diff-box.md
 - Specifying metadata and steps: tutorial-registry.md
