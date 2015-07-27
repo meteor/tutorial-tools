@@ -8,6 +8,12 @@ It's not just a set of packages - it's also a workflow for creating, maintaining
 
 These tools are used to produce and maintain the official Meteor tutorials at [meteor.com/tutorials](https://www.meteor.com/tutorials/blaze/creating-an-app).
 
+### List of tools
+
+1. `tutorial-diff-box` - A Meteor template called `DiffBox` that can display a parsed Git diff as a code snippet.
+2. `tutorial-step-diff-compiler` - A Meteor build plugin that parses Git patch files so that they can be displayed by `DiffBox`
+3. `tutorial-registry` - A package that provides a standard API for specifying tutorial metadata.
+
 ### Problems this is solving
 
 1. **Consistency between steps** - In a step-by-step tutorial where you are editing a piece of code incrementally, it can be hard to keep all of the steps consistent and conflict-free. In this workflow, this problem is solved by keeping all of the code snippets in a git repository so that conflicts are automatically identified and resolved.
