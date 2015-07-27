@@ -27,7 +27,6 @@ Template.DiffBox.onCreated(function () {
   }
 
   this.tutorialMetadata = DiffBox._tutorials[tutorialName];
-
   this.patch = StepDiffs[this.tutorialMetadata.patchFilename][Template.currentData().step];
 
   if (Template.currentData().filename) {
@@ -45,8 +44,6 @@ Template.DiffBox.onCreated(function () {
   }
 
   this.fileData = this.patch.files[this.filename];
-
-  console.log(this);
 });
 
 Template.DiffBox.helpers({

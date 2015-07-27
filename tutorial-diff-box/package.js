@@ -14,11 +14,13 @@ Package.onUse(function(api) {
   api.use([
     "templating",
     "jsx@0.1.5",
-    "less"
+    "less",
+    'check'
   ]);
 
   api.use([
-    "simple:highlight.js@1.0.9"
+    "simple:highlight.js@1.0.9",
+    'mdg:tutorial-step-diff-compiler@0.1.0'
   ])
 
   api.versionsFrom('1.1.0.2');
