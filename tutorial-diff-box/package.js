@@ -13,7 +13,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.use([
     "templating",
-    "jsx",
+    "jsx@0.1.5",
     "less"
   ]);
 
