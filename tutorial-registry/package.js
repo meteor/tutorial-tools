@@ -1,6 +1,6 @@
 Package.describe({
   name: 'mdg:tutorial-registry',
-  version: '0.1.0',
+  version: '0.1.1',
   // Brief, one-line summary of the package.
   summary: 'Register tutorials in a central location',
   // URL to the Git repository containing the source code for this package.
@@ -17,4 +17,5 @@ Package.onUse(function(api) {
   ]);
   api.versionsFrom('1.1.0.2');
   api.addFiles('tutorial-registry.jsx');
+  api.export('TutorialRegistry');
 });
