@@ -1,10 +1,10 @@
-babel-compiler@5.4.7
+babel-compiler@5.8.3_1
 babel-runtime@0.1.2
 base64@1.0.3
 check@1.0.5
 ejson@1.0.6
 json@1.0.3
-jsx@0.1.0
-mdg:tutorial-registry@0.1.0
+jsx@0.1.5
+mdg:tutorial-registry@0.1.1
 meteor@1.1.6
 underscore@1.0.3
