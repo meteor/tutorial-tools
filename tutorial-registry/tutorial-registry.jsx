@@ -6,6 +6,7 @@ TutorialRegistry = {
     check(metadata, Match.ObjectIncluding({
       title: String,
       subtitle: String,
+      slug: String,
       tutorialSourceLink: Match.Optional(String),
       steps: [
         Match.ObjectIncluding({
