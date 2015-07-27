@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'tutorial-registry',
+  name: 'mdg:tutorial-registry',
   version: '0.1.0',
   // Brief, one-line summary of the package.
   summary: 'Register tutorials in a central location',
@@ -12,7 +12,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.use([
-    "jsx",
+    "jsx@0.1.5",
     'check'
   ]);
   api.versionsFrom('1.1.0.2');
