@@ -29,6 +29,8 @@ function multiPatchHandler(compileStep) {
 function parseOutStepNumberAndComment(parsedPatch) {
   var splitMessage = parsedPatch.message.split(":");
 
-  parsedPatch.stepNumber = splitMessage[0].split(" ")[1].trim();
-  parsedPatch.summary = splitMessage[1].trim();
+  if (splitMessage.length > 1) {
+    parsedPatch.stepNumber = splitMessage[0].split(" ")[1].trim();
+    parsedPatch.summary = splitMessage[1].trim(); 
+  }
 }
