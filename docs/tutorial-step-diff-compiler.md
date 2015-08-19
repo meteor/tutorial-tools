@@ -27,25 +27,28 @@ You get a nested data structure on the client that has all of the patch files th
       "summary": "Run `meteor create`",
       "message": "Step 1: Run `meteor create`",
       "files": {
-        "simple-todos.html": {
-          "lineNumbers": {
-            "added": {
-              "lines": 14,
-              "start": 1
+        "simple-todos.html": [
+          {
+            "lineNumbers": {
+              "added": {
+                "lines": 14,
+                "start": 1
+              },
+              "removed": {
+                "lines": 0,
+                "start": 0
+              }
             },
-            "removed": {
-              "lines": 0,
-              "start": 0
-            }
-          },
-          "lines": [
-            {
-              "content": "<head>",
-              "type": "added"
-            },
-            // ... more lines here
-          ]
-        }
+            "lines": [
+              {
+                "content": "<head>",
+                "type": "added"
+              },
+              // ... more lines here
+            ]
+          }
+          // .. could be multiple items if the patch has more parts
+        ]
         // ... more files here
       }
     }
