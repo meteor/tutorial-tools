@@ -82,6 +82,8 @@ Template.DiffBox.helpers({
           let fileType = ext;
           if (ext === "jsx") {
             fileType = "js";
+          } else if (ext === "less") {
+            fileType = "css";
           }
 
           if (hljs.getLanguage(fileType)) {
