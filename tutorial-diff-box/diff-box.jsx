@@ -16,7 +16,8 @@ DiffBox.registerTutorial = function (tutorialName, metadata) {
 Template.DiffBox.onCreated(function () {
   if (! Match.test(Template.currentData(), {
     step: String,
-    tutorialName: String
+    tutorialName: String,
+    filename: Match.Optional(String)
   })) {
     throw new Error("Must pass 'step' and 'tutorialName' arguments to DiffBox.");
   }
@@ -43,7 +44,7 @@ Template.DiffBox.onCreated(function () {
     }
   }
 
-  this.fileData = this.patch.files[this.filename];
+  this.fileSections = this.patch.files[this.filename];
 });
 
 Template.DiffBox.helpers({
@@ -57,28 +58,54 @@ Template.DiffBox.helpers({
     return Template.instance().filename;
   },
   lineNumbers() {
-    const fileData = Template.instance().fileData;
-    return _.range(fileData.lineNumbers.added.start,
-      fileData.lineNumbers.added.start + fileData.lineNumbers.added.lines);
+    const fileSections = Template.instance().fileSections;
+    const lineRanges = fileSections.map((section) => {
+      return _.range(section.lineNumbers.added.start,
+        section.lineNumbers.added.start + section.lineNumbers.added.lines);
+    });
+
+    return lineRanges.reduce((prev, curr) => {
+      if (prev) {
+        return prev.concat(" ").concat(curr);
+      } else {
+        return curr;
+      }
+    }, null);
   },
   lines() {
-    return Template.instance().fileData.lines.map((line) => {
-      let highlightedContent = null;
-      if (line.content) {
-        const ext = _.last(Template.instance().filename.split("."));
-        let fileType = ext;
-        if (ext === "jsx") {
-          fileType = "js";
+    const fileSections = Template.instance().fileSections;
+    const sectionLines = fileSections.map((section) => {
+      return section.lines.map((line) => {
+        let highlightedContent = null;
+        if (line.content) {
+          const ext = _.last(Template.instance().filename.split("."));
+          let fileType = ext;
+          if (ext === "jsx") {
+            fileType = "js";
+          }
+
+          if (hljs.getLanguage(fileType)) {
+            highlightedContent =
+              hljs.highlight(fileType, line.content, true).value;
+          } else {
+            highlightedContent = line.content;
+          }
         }
 
-        highlightedContent = hljs.highlight(fileType, line.content, true).value;
-      }
-
-      // XXX mutating in place, but it's probably OK since the result will
-      // always be the same
-      line.highlightedContent = highlightedContent || " ";
-      return line;
+        // XXX mutating in place, but it's probably OK since the result will
+        // always be the same
+        line.highlightedContent = highlightedContent || " ";
+        return line;
+      });
     });
+
+    return sectionLines.reduce((prev, curr) => {
+      if (prev) {
+        return prev.concat({ highlightedContent: "<span class='hljs-comment'>...some lines skipped...</span>" }).concat(curr);
+      } else {
+        return curr;
+      }
+    }, null);
   },
   equals(a, b) {
     return a === b;
