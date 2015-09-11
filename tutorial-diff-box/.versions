@@ -14,8 +14,8 @@ jquery@1.11.3_2
 json@1.0.3
 jsx@0.1.5
 less@1.0.14
-mdg:tutorial-diff-box@0.2.1
-mdg:tutorial-step-diff-compiler@0.1.0
+mdg:tutorial-diff-box@0.2.2
+mdg:tutorial-step-diff-compiler@0.2.1
 meteor@1.1.6
 minifiers@1.1.5
 minimongo@1.0.8
