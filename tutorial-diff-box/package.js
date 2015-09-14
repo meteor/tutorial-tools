@@ -23,7 +23,7 @@ Package.onUse(function(api) {
     'mdg:tutorial-step-diff-compiler@0.2.1'
   ])
 
-  api.versionsFrom('1.1.0.2');
+  api.versionsFrom('1.2-rc.14');
   api.addFiles('diff-box.html');
   api.addFiles('diff-box.less');
   api.addFiles('diff-box.jsx', "client");
