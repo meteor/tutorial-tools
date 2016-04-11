@@ -15,11 +15,8 @@ DiffBox.registerTutorial = function (tutorialName, metadata) {
 
 function escapeHtml(unsafe) {
   return unsafe
-    .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
 }
 
 Template.DiffBox.onCreated(function () {
@@ -97,15 +94,15 @@ Template.DiffBox.helpers({
 
           if (hljs.getLanguage(fileType)) {
             highlightedContent =
-              hljs.highlight(fileType, line.content, true).value;
+              hljs.highlight(fileType, fileType !== 'html' ? escapeHtml(line.content) : line.content , true).value;
           } else {
-            highlightedContent = line.content;
+            highlightedContent = escapeHtml(line.content);
           }
         }
 
         // XXX mutating in place, but it's probably OK since the result will
         // always be the same
-        line.highlightedContent = escapeHtml(highlightedContent || " ");
+        line.highlightedContent = highlightedContent || " ";
         
         return line;
       });
