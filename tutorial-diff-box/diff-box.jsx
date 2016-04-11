@@ -13,6 +13,15 @@ DiffBox.registerTutorial = function (tutorialName, metadata) {
   DiffBox._tutorials[tutorialName] = metadata;
 };
 
+function escapeHtml(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 Template.DiffBox.onCreated(function () {
   if (! Match.test(Template.currentData(), {
     step: String,
@@ -96,7 +105,8 @@ Template.DiffBox.helpers({
 
         // XXX mutating in place, but it's probably OK since the result will
         // always be the same
-        line.highlightedContent = highlightedContent || " ";
+        line.highlightedContent = escapeHtml(highlightedContent || " ");
+        
         return line;
       });
     });

@@ -12,16 +12,16 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.use([
-    "templating",
+    "templating@1.1.0",
     "jsx@0.1.5",
-    "less",
-    'check'
+    "less@1.0.14",
+    'check@1.0.5'
   ]);
 
   api.use([
     "simple:highlight.js@1.0.9",
     'mdg:tutorial-step-diff-compiler@0.2.1'
-  ])
+  ]);
 
   api.versionsFrom('1.2-rc.14');
   api.addFiles('diff-box.html');
