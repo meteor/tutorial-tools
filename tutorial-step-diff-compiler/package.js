@@ -1,6 +1,6 @@
 Package.describe({
   name: 'mdg:tutorial-step-diff-compiler',
-  version: '0.2.1',
+  version: '0.2.2',
   // Brief, one-line summary of the package.
   summary: 'Build plugin that parses git patches',
   // URL to the Git repository containing the source code for this package.
