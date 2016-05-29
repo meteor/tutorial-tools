@@ -93,8 +93,10 @@ Template.DiffBox.helpers({
           }
 
           if (hljs.getLanguage(fileType)) {
+            // XXX there is no need for replacing < > and &
+            // because hljs does that
             highlightedContent =
-              hljs.highlight(fileType, fileType !== 'html' ? escapeHtml(line.content) : line.content , true).value;
+              hljs.highlight(fileType, line.content, true).value;
           } else {
             highlightedContent = escapeHtml(line.content);
           }
@@ -103,7 +105,7 @@ Template.DiffBox.helpers({
         // XXX mutating in place, but it's probably OK since the result will
         // always be the same
         line.highlightedContent = highlightedContent || " ";
-        
+
         return line;
       });
     });
