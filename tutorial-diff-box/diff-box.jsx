@@ -44,6 +44,10 @@ Template.DiffBox.onCreated(function () {
   this.tutorialMetadata = DiffBox._tutorials[tutorialName];
   this.patch = StepDiffs[this.tutorialMetadata.patchFilename][Template.currentData().step];
 
+  if (typeof this.patch === 'undefined') {
+    throw createError(`Patch for this step is missing`, true);
+  }
+
   if (Template.currentData().filename) {
     this.filename = Template.currentData().filename;
   } else {
