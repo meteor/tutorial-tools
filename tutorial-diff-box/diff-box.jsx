@@ -19,22 +19,34 @@ function escapeHtml(unsafe) {
     .replace(/>/g, "&gt;")
 }
 
+function createError(msg, step) {
+  if (!step) {
+    return new Error(msg);
+  }
+
+  return new Error(`Step ${Template.currentData().step}: ${msg}`);
+}
+
 Template.DiffBox.onCreated(function () {
   if (! Match.test(Template.currentData(), {
     step: String,
     tutorialName: String,
     filename: Match.Optional(String)
   })) {
-    throw new Error("Must pass 'step' and 'tutorialName' arguments to DiffBox.");
+    throw createError('Must pass \'step\' and \'tutorialName\' arguments to DiffBox.');
   }
 
   const tutorialName = Template.currentData().tutorialName;
   if (! _.has(DiffBox._tutorials, tutorialName)) {
-    throw new Error(`Must call 'DiffBox.registerTutorial' with the tutorialName '${tutorialName}' first.`);
+    throw createError(`Must call 'DiffBox.registerTutorial' with the tutorialName '${tutorialName}' first.`);
   }
 
   this.tutorialMetadata = DiffBox._tutorials[tutorialName];
   this.patch = StepDiffs[this.tutorialMetadata.patchFilename][Template.currentData().step];
+
+  if (typeof this.patch === 'undefined') {
+    throw createError(`Patch for this step is missing`, true);
+  }
 
   if (Template.currentData().filename) {
     this.filename = Template.currentData().filename;
@@ -46,7 +58,7 @@ Template.DiffBox.onCreated(function () {
     }
 
     if (! this.filename) {
-      throw new Error(`Multiple files in patch. Must specify filename which is one of: ${filenames.join(", ")}`);
+      throw createError(`Multiple files in patch. Must specify filename which is one of: ${filenames.join(", ")}`, true);
     }
   }
 
