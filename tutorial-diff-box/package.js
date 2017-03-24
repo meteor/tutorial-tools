@@ -13,7 +13,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.use([
     "templating",
-    "jsx@0.1.5",
+    "ecmascript",
     "less",
     'check'
   ]);

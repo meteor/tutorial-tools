@@ -12,7 +12,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.use([
-    "jsx@0.1.5",
+    "ecmascript",
     'check'
   ]);
   api.versionsFrom('1.1.0.2');
