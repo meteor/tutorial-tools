@@ -15,7 +15,7 @@ Package.onUse(function(api) {
     "ecmascript",
     'check'
   ]);
-  api.versionsFrom('1.1.0.2');
+  api.versionsFrom('1.2.1');
   api.addFiles('tutorial-registry.jsx');
   api.export('TutorialRegistry');
 });

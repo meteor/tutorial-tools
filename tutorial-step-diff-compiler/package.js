@@ -19,7 +19,7 @@ Package.registerBuildPlugin({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.1.0.2');
+  api.versionsFrom('1.2.1');
   api.addFiles('define-step-diffs.js');
   api.export("StepDiffs");
 });
