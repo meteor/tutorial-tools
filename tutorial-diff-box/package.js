@@ -14,6 +14,7 @@ Package.onUse(function(api) {
   api.use([
     "templating",
     "ecmascript",
+    "jsx@0.1.6",
     "less",
     'check'
   ]);
