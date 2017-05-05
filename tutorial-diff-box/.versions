@@ -17,8 +17,8 @@ id-map@1.0.9
 jquery@1.11.10
 jsx@0.2.4
 less@2.7.9
-mdg:tutorial-diff-box@0.4.2
-mdg:tutorial-step-diff-compiler@0.4.2
+mdg:tutorial-diff-box@0.4.3
+mdg:tutorial-step-diff-compiler@0.4.3
 meteor@1.6.1
 modules@0.8.2
 modules-runtime@0.7.10

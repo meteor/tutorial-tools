@@ -1,6 +1,6 @@
 Package.describe({
   name: 'mdg:tutorial-step-diff-compiler',
-  version: '0.4.2',
+  version: '0.4.3',
   // Brief, one-line summary of the package.
   summary: 'Build plugin that parses git patches',
   // URL to the Git repository containing the source code for this package.
@@ -11,7 +11,11 @@ Package.describe({
 });
 
 Package.registerBuildPlugin({
-  name: "mdg:tutorial-step-diffs-plugin",
+  name: "mdgTutorialStepDiffsPlugin",
+  use: [
+    'caching-compiler@1.1.6',
+    'ecmascript@0.7.0'
+  ],
   sources: ["plugin.js"],
   npmDependencies: {
     "git-patch-parser": "0.2.1"

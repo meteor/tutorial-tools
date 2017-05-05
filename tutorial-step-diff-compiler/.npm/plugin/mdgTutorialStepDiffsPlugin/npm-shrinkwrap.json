@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "git-patch-parser": {
+      "version": "0.2.1",
+      "resolved": "https://registry.npmjs.org/git-patch-parser/-/git-patch-parser-0.2.1.tgz",
+      "from": "git-patch-parser@0.2.1"
+    }
+  }
+}

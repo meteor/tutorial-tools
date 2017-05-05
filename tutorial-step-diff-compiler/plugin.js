@@ -1,25 +1,60 @@
 var gitPatchParser = Npm.require("git-patch-parser");
 
-Plugin.registerSourceHandler("multi.patch", {isTemplate: true}, multiPatchHandler);
+Plugin.registerCompiler(
+  {
+    extensions: ["multi.patch"],
+    isTemplate: true
+  },
+  () => new MultiPatchCompiler
+);
 
-function multiPatchHandler(compileStep) {
-  var parsedData = gitPatchParser.parseMultiPatch(compileStep.read().toString());
+export class MultiPatchCompiler extends CachingCompiler {
+  constructor() {
+    super({
+      compilerName: 'muttiPatch',
+      defaultCacheSize: 1024*1024*10,
+    });
+  }
+  getCacheKey(inputFile) {
+    return inputFile.getSourceHash();
+  }
+  compileResultSize(compileResult) {
+    return compileResult.length;
+  }
+  compileOneFile(inputFile) {
+    const content = inputFile.getContentsAsString().toString('utf8');
 
-  // Modifies array in place, sorry!
-  parsedData.forEach(parseOutStepNumberAndComment);
+    let results;
+    try {
+      let parsedData = gitPatchParser.parseMultiPatch(content);
 
-  var stepToPatch = {};
-  parsedData.forEach(function (parsedPatch) {
-    stepToPatch[parsedPatch.stepNumber] = parsedPatch;
-  });
+      // Modifies array in place, sorry! -SWIM
+      parsedData.forEach(parseOutStepNumberAndComment);
 
-  var codeToDefineFilename = "StepDiffs['" + compileStep.inputPath + "'] = " + JSON.stringify(stepToPatch) + ";\n";
+      const stepToPatch = {};
+      parsedData.forEach(function (parsedPatch) {
+        stepToPatch[parsedPatch.stepNumber] = parsedPatch;
+      });
 
-  compileStep.addJavaScript({
-    sourcePath: compileStep.inputPath,
-    path: compileStep.inputPath + ".js",
-    data: codeToDefineFilename
-  });
+      results = "StepDiffs['" + inputFile.getPathInPackage() + "'] = " + JSON.stringify(stepToPatch) + ";\n";
+    } catch (e) {
+      inputFile.error({
+        message: e.message,
+        sourcePath: inputFile.inputPath,
+        line: e.line
+      });
+    }
+
+    return results;
+  }
+  addCompileResult(inputFile, compileResult) {
+    if (!compileResult) return;
+
+    inputFile.addJavaScript({
+      path: inputFile.getPathInPackage() + '.js',
+      data: compileResult,
+    });
+  }
 }
 
 function prepareSummary(message) {
