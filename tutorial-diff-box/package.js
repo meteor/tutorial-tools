@@ -1,6 +1,6 @@
 Package.describe({
   name: 'mdg:tutorial-diff-box',
-  version: '0.4.0',
+  version: '0.4.2',
   // Brief, one-line summary of the package.
   summary: 'A template to display parsed Git diffs as code snippets',
   // URL to the Git repository containing the source code for this package.
@@ -11,19 +11,19 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
+  api.versionsFrom('1.4.4.2');
   api.use([
-    "templating",
-    "jsx@0.1.5",
+    "templating@1.3.2",
+    "jsx@0.2.4",
     "less",
     'check'
   ]);
 
   api.use([
     "simple:highlight.js@1.0.9",
-    'mdg:tutorial-step-diff-compiler@0.4.0'
+    'mdg:tutorial-step-diff-compiler@0.4.2'
   ]);
 
-  api.versionsFrom('1.2.1');
   api.addFiles('diff-box.html');
   api.addFiles('diff-box.less');
   api.addFiles('diff-box.jsx', "client");

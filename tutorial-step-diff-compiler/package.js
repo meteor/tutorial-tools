@@ -1,6 +1,6 @@
 Package.describe({
   name: 'mdg:tutorial-step-diff-compiler',
-  version: '0.4.0',
+  version: '0.4.2',
   // Brief, one-line summary of the package.
   summary: 'Build plugin that parses git patches',
   // URL to the Git repository containing the source code for this package.
@@ -19,7 +19,7 @@ Package.registerBuildPlugin({
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.2.1');
+  api.use('isobuild:compiler-plugin@1.0.0');
   api.addFiles('define-step-diffs.js');
   api.export("StepDiffs");
 });
